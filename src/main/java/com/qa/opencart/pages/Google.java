@@ -7,8 +7,8 @@ public class Google {
 		System.out.println("done");
 	}
 
-	public void registration() {
-		System.out.println("register");
+	public void forgot() {
+		System.out.println("forgot");
 
 	}
 }

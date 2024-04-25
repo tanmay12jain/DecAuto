@@ -46,6 +46,8 @@ public class LoginPage {
 		return url;
 	}
 
+	
+	
 	@Step("getting the state of forgot pwd link...")
 	public boolean isForgotPwdLinkExist() {
 		return eleUtil.isElementDisplayed(forgotPWdLink);

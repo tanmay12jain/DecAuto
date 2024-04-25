@@ -25,18 +25,26 @@ public class DriverFactory {
 	WebDriver driver;
 	Properties prop;
 	OptionsManager optionsManager;
-	
+	String browserName = null;
+
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 
 	public static String highlight;
 
 	public WebDriver initDriver(Properties prop) {
 
-		String browserName = prop.getProperty("browser");
-		//String browserName = System.getProperty("browser");
-		System.out.println("browser name is : " + browserName);
-		
-		Log.info("Browser name is : " + browserName);
+		String bname = System.getProperty("browser");
+		System.out.println("Running tests on browser: " + bname);
+		if (bname != null) {
+			browserName = bname;
+		} else {
+			browserName = prop.getProperty("browser");
+			// String browserName = System.getProperty("browser");
+			System.out.println("browser name is : " + browserName);
+
+			Log.info("Browser name is : " + browserName);
+
+		}
 
 		highlight = prop.getProperty("highlight");
 
@@ -44,30 +52,30 @@ public class DriverFactory {
 
 		switch (browserName.trim().toLowerCase()) {
 		case "chrome":
-			//driver = new ChromeDriver(optionsManager.getChromeOptions());
+			// driver = new ChromeDriver(optionsManager.getChromeOptions());
 			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			break;
 
 		case "firefox":
-			//driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
+			// driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
 			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 
 			break;
 
 		case "edge":
-			//driver = new EdgeDriver(optionsManager.getEdgeOptions());
+			// driver = new EdgeDriver(optionsManager.getEdgeOptions());
 			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
 
 			break;
 
 		case "safari":
-			//driver = new SafariDriver();
+			// driver = new SafariDriver();
 			tlDriver.set(new SafariDriver());
 
 			break;
 
 		default:
-			//System.out.println("plz pass the right browser...." + browserName);
+			// System.out.println("plz pass the right browser...." + browserName);
 			Log.error("plz pass the right browser...." + browserName);
 			throw new BrowserException("NO BROWSER FOUND..." + browserName);
 		}
@@ -78,14 +86,11 @@ public class DriverFactory {
 
 		return getDriver();
 	}
-	
-	
-	
+
 	public static WebDriver getDriver() {
 		return tlDriver.get();
 	}
-	
-	
+
 	public Properties initProp() {
 
 		// envName=qa,stage,prod,uat,dev
@@ -133,18 +138,17 @@ public class DriverFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return prop;
 
 	}
-	
-	
+
 	/**
 	 * take screenshot
 	 */
-	
+
 	public static String getScreenshot(String methodName) {
-		File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);//temp directory
+		File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);// temp directory
 		String path = System.getProperty("user.dir") + "/screenshot/" + methodName + "_" + System.currentTimeMillis()
 				+ ".png";
 
@@ -158,8 +162,5 @@ public class DriverFactory {
 
 		return path;
 	}
-	
-	
-	
 
 }

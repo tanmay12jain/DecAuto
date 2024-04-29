@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Open Cart sanity Suite" verbose="10" thread-count="6" parallel="tests">
+<suite name="Open Cart regression Suite" verbose="10" thread-count="6" parallel="tests">
 
 	<listeners>
 		<listener
@@ -12,12 +12,12 @@
 			class-name="com.qa.opencart.listeners.AnnotationTransformer" />
 	</listeners>
 
-	<test name="Login Page Test">
+<!--	<test name="Login Page Test">
 		<classes>
 			<class name="com.qa.opencart.test.LoginPageTest" />
 			<parameter name="browser" value="chrome" />
 		</classes>
-	</test>
+	</test>-->
 
 
 	<test name="Accounts Page Test">
@@ -27,14 +27,14 @@
 		</classes>
 	</test>
 	
-<!--	
+	
 	<test name="Search Results Page Test">
 		<classes>
 			<class name="com.qa.opencart.test.SearchResultsTest" />
 			<parameter name="browser" value="edge" />
 		</classes>
 	</test>
-	<test name="Product info page Test">
+<!--	<test name="Product info page Test">
 		<classes>
 			<class name="com.qa.opencart.test.ProductPageInfoTest" />
 			<parameter name="browser" value="chrome" />

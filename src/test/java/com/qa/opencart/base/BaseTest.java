@@ -38,7 +38,8 @@ public class BaseTest {
 	@Step("Launching the {0} browser and initializing the properties")
 	@Parameters({ "browser" })
 	@BeforeTest
-	public void setup(@Optional("chrome")String BrowserName) {
+	//public void setup(@Optional("chrome")String BrowserName) {
+		public void setup(String BrowserName) {
 		df = new DriverFactory();
 		prop = df.initProp();// we have to initialize prop to get the all properties from the file in prop
 								// reference
